@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CasaDoCodigo.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +34,8 @@ namespace CasaDoCodigo
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(connectionString)
             );
-
+            
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IDataService, DataService>();
             services.AddTransient<IProdutoRepository, ProdutoRepository>();
             services.AddTransient<IPedidoRepository, PedidoRepository>();

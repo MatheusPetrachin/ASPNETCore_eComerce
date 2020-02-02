@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CasaDoCodigo.Repositories
 {
-    public class BaseRepository<T> where T : BaseModel
+    public abstract class BaseRepository<T> where T : BaseModel
     {
         protected readonly ApplicationContext contexto;
         protected readonly DbSet<T> dbSet;
@@ -16,6 +16,7 @@ namespace CasaDoCodigo.Repositories
         {
             this.contexto = contexto;
             dbSet = contexto.Set<T>();
+
         }
     }
 }
